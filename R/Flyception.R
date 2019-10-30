@@ -163,7 +163,8 @@ FlyceptionR <- function(dir, prefix, autopos=T, interaction=T, stimulation=F, re
   goodfr <- find_goodframes(window_mask=fvimgbwbrfh,
                             fvimgl=fvimgl,
                             output=output_prefix,
-                            reuse=reuse)
+                            reuse=reuse,
+                            dist_thresh=100)
 
   ## Part 11. Calculate fluorescence intensity in the brain window
   message("Measuring fluorescence intensity...")

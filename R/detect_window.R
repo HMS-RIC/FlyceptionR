@@ -19,7 +19,7 @@ detect_window <- function(fvimgl, output, reuse=F){
   }else{
     # fvimgl: raw fly-view image stack
     # fvimgbw: Find "bright" pixels (px that are 0.1 greater than the 30x30 boxcar filtered version of the image)
-    boxcar = 30
+    boxcar = 50
     fvimgbw <- thresh(fvimgl, boxcar, boxcar, 0.1)
     writeImage(fvimgl[,,1]/255, file=paste0(output, "_fvimgl.png"))
     writeImage(fvimgbw[,,1], file=paste0(output, "_fvimgbw.png"))

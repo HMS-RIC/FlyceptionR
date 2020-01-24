@@ -19,9 +19,9 @@
 #' FlyceptionR()
 #'
 
-FlyceptionR <- function(dir, prefix, autopos=T, interaction=T, stimulation=F, reuse=T,
-                        fmf2tif=T, zoom=0.85, FOI=F, binning=1, fluo_flash_thresh=10000,
-                        fv_flash_thresh=135, av_flash_thresh=100, dist_thresh=4,
+FlyceptionR <- function(dir, prefix, autopos=T, interaction=F, stimulation=F, reuse=T,
+                        fmf2tif=T, zoom=0.83, FOI=F, binning=1, fluo_flash_thresh=0,
+                        fv_flash_thresh=0, av_flash_thresh=0, dist_thresh=4,
                         rotate_camera=-180){
 
   # TO DO

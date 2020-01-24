@@ -205,10 +205,11 @@ FlyceptionR <- function(dir, prefix, autopos=T, interaction=T, stimulation=F, re
   # Create ROI mask
   # Rectangle ROI example
   ROI_mask <- array(0, dim=dim(registered_images$flimgreg)[1:2])
-  ROI_mask[120:(120+10-1),120:(120+10-1)] <- 1
+  ROI_mask[84:(84+14),84:(84+9)] <- 1
   # Circular ROI example
   # ROI_mask <- array(0, dim=dim(registered_images$flimgreg)[1:2])
   # EBImage::drawCircle(img=ROI_mask, x=120, y=120, radius=5, col=1, fill=T)
+  writeImage(ROI_mask, file=paste0(output_prefix, "_ROI_Mask.png"))
 
   ROI_dFF0 <- measureROI(img=registered_images$flimgreg,
                          mask=ROI_mask,

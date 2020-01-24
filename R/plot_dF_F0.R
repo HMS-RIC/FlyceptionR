@@ -15,8 +15,8 @@ plot_dF_F0 <- function(intensity, goodfr){
   deltaFint <- intensity[Fintfr] - F0int
   dFF0int <- deltaFint/F0int * 100
   dat <- data.frame(x=(1:length(dFF0int)), y=dFF0int, d=flydist[Fintfr])
-  p <- ggplot(data=dat, aes(x=x, y=y)) +
-    geom_smooth(method="loess", span = 0.4, level=0.95) +
+  p <- ggplot(data=dat, aes(x=x, y=y)) + geom_point() +
+    geom_smooth(method="loess", span = 0.05, level=0.95) +
     ylim(-5, 10) +
     geom_line(data=dat, aes(x=x, y=d))
   ggsave(filename = paste0(dir, prefix, "_dFF0int_", fintfr, ".pdf"), width = 8, height = 8)

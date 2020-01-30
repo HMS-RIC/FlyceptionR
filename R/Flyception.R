@@ -237,16 +237,16 @@ FlyceptionR <- function(dir, prefix, autopos=T, interaction=F, stimulation=F, re
   if(fmf2tif==T){
     for (fvFile in list.files(dir, pattern="^fv.*fmf$")) {
       tiffFile = paste0(substr(fvFile, 1, nchar(fvFile) - 4), ".tif")
-      if (!file.exists(paste0(dir, tiffFile))) {
+      if (!file.exists(file.path(dir, tiffFile))) {
         message(paste0("fv.tiff doesn't exist yet: ", tiffFile))
-        dipr::fmf2tif(paste0(dir, fvFile), skip=10)
+        dipr::fmf2tif(file.path(dir, fvFile), skip=10)
       }
     }
     for (avFile in list.files(dir, pattern="^av.*fmf$")) {
       tiffFile = paste0(substr(avFile, 1, nchar(avFile) - 4), ".tif")
-      if (!file.exists(paste0(dir, tiffFile))) {
+      if (!file.exists(file.path(dir, tiffFile))) {
         message(paste0("av.tiff doesn't exist yet: ", tiffFile))
-        dipr::fmf2tif(paste0(dir, avFile), skip=2)
+        dipr::fmf2tif(file.path(dir, avFile), skip=2)
       }
     }
   }

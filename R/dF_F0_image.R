@@ -28,6 +28,7 @@ dF_F0_image <- function(flimgreg, fvimgbwbrfhregimg, regimgi, colmax=F, cmin, cm
   dFF0fin <- Image(dFF0fin, colormode="Color")
   message(sprintf("Pseudocolor range is %d to %d", cmin, cmax))
 
+  tmp = gc() # force a garbage collection
   dFF0finmask <- dFF0fin
   dFF0finmask[,,1,] <- fvimgbwbrfhregimg
   dFF0finmask[,,2,] <- fvimgbwbrfhregimg
@@ -37,6 +38,7 @@ dF_F0_image <- function(flimgreg, fvimgbwbrfhregimg, regimgi, colmax=F, cmin, cm
   dFF0regimg[,,2,] <- 255-regimgi
   dFF0regimg[,,3,] <- 255-regimgi
   dFF0finmaskfly <- dFF0fin*dFF0finmask+dFF0regimg/255
+  tmp = gc() # force a garbage collection
   writeImage(dFF0finmaskfly, bits.per.sample = 8,
              file=paste0(output, "_dFF0finmaskfly.tif"))
   writeImage(Fmean/255, bits.per.sample = 8,
@@ -45,6 +47,7 @@ dF_F0_image <- function(flimgreg, fvimgbwbrfhregimg, regimgi, colmax=F, cmin, cm
              file=paste0(output, "_F0.tif"))
   writeImage(dFF0maskedpos, bits.per.sample = 8,
              file=paste0(output, "_dF_F0_median_masked.tif"))
+  tmp = gc() # force a garbage collection
   if ((length(goodfr)>1) && any(goodfr)) {
     writeImage(Image(dFF0finmaskfly@.Data[,,,goodfr], colormode="Color"),
                         bits.per.sample = 8,

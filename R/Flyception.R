@@ -128,12 +128,14 @@ FlyceptionR <- function(dir, prefix, autopos=T, interaction=F, stimulation=F, re
                    round((dim(flimg)[2] - 128)/2):(round((dim(flimg)[2]/2+128/2))-1),]
   }
   flimgrt <- EBImage::rotate(EBImage::flip(flimg), rotate_camera)
+  gc()
   # Load fly-view camera images
   fvimgl <- dipr::readFMF(fly_view_fmf, frames=frid)
   # Load arena-view camera images
   avimgl <- dipr::readFMF(arena_view_fmf, frames=frida)
   EBImage::writeImage(avimgl/255, file=paste0(output_prefix, "_avimgl_fr_", frida[1], "-", tail(frida, n=1), ".tif"))
   rm(avimgl)
+  gc()
 
   ## Part 7. Detect window on the head
   fvimgbwbrfh <- detect_window(fvimgl=fvimgl, output=output_prefix, reuse=reuse)

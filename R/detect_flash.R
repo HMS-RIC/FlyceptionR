@@ -82,6 +82,7 @@ detect_flash <- function(input, output, type=c("fluo", "fly", "arena"), flash_th
     if (flash_thresh==0) {
       # Auto-detect threshold.
       # (Find the largest intensity gap among the brightest 10% of frames.)
+      fvimgsubint = c(0, diff(fvimgsubint)) # run "extreme" high-pass filter on the data (i.e., diff())
       brightestFrames = sort(fvimgsubint, decreasing = TRUE)[1:(length(fvimgsubint)/10)]
       frameDiff = -diff(brightestFrames)
       biggestDiff = which(frameDiff == max(frameDiff))[1]

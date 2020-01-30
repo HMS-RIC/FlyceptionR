@@ -167,6 +167,7 @@ FlyceptionR <- function(dir, prefix, autopos=T, interaction=F, stimulation=F, re
                             fvimgl=fvimgl,
                             output=output_prefix,
                             reuse=reuse,
+                            sharp_thresh = 95,
                             dist_thresh=100)
 
   ## Part 11. Calculate fluorescence intensity in the brain window

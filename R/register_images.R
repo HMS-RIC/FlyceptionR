@@ -43,7 +43,7 @@ register_images <- function(frid, fvimgl, flimgrt, fvimgbwbrfh, angles, output, 
                                   scope="rigid", symmetric=F)
       }
     }else{
-      regresi <- foreach(rg = 1:dim(fvimgli)[3]) %dopar% niftyreg(fvimgli[,,rg], fvimgrt1sti,  scope="rigid", symmetric=F, internal=FALSE)
+      regresi <- foreach(rg = 1:dim(fvimgli)[3]) %dopar% niftyreg(rot[,,rg], fvimgrt1sti,  scope="rigid", symmetric=F, internal=FALSE)
     }
     regimgi <- array(sapply(regresi, function(x) x$image), dim=dim(fvimgli))
     regimgi[which(is.na(regimgi)==T)] <- 0

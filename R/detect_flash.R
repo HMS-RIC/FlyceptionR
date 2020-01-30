@@ -18,7 +18,14 @@ detect_flash <- function(input, output, type=c("fluo", "fly", "arena"), flash_th
       flimgint <- readRDS(paste0(output, "_flimgint.RDS"))
     } else{
     message(sprintf("Reading %s", input))
-    flimgint <- dipr::readTIFF2(input, intensity=T)
+
+    ## Get mean frame intensity from TIFF stack
+    ## (readTIFF is 4x faster than dipr::readTIFF2)
+    # flimgint <- dipr::readTIFF2(input, intensity=T)
+    library(tiff)
+    flimgint = readTIFF(input, all=T)
+    flimgint = as.numeric(lapply(flimgint, mean))*2^16
+
     png(file=paste0(output, "_flflash.png"), width=400, height=400)
     plot(flimgint)
     dev.off()
